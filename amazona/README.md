@@ -39,9 +39,13 @@
    2. update fetch data
    3. get state from useReducer
 10. Add Bootstrap UI Framework
-   1. npm install react-bootstrap bootstrap
-   2. update App.js
+    1. npm install react-bootstrap bootstrap
+    2. update App.js
 11. Create Product an Rating Component
-   1. create Rating component
-   2. create Product component
-   3. use Rating component in Product component
+    1. create Rating component
+    2. create Product component
+    3. use Rating component in Product component
+12. Create Product Details Screen
+    1. fetch product from backend
+    2. create 3 columns for image, info and action
+    
