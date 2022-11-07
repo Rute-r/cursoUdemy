@@ -148,3 +148,5 @@
 34. Add Sidebar and Search Box
     1. add sidebar
     2. add search box
+34-1. Add Sidebar and Search Box Fix
+    1. fix error in LinkContainer to={`/search.category=${category}`}
