@@ -148,5 +148,8 @@
 34. Add Sidebar and Search Box
     1. add sidebar
     2. add search box
-34-1. Add Sidebar and Search Box Fix
-    1. fix error in LinkContainer to={`/search.category=${category}`}
+    3. fix error in LinkContainer /search.category
+35. Create Search Screen
+    1. show filters
+    2. create api for searching products
+    3. display results
