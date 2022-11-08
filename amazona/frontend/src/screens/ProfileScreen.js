@@ -76,7 +76,7 @@ export default function ProfileScreen() {
             required
           />
         </Form.Group>
-        <Form.Group className="mb-3" controlId="email">
+        <Form.Group className="mb-3" controlId="name">
           <Form.Label>Email</Form.Label>
           <Form.Control
             type="email"
