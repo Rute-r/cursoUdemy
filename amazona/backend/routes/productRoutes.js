@@ -10,6 +10,7 @@ productRouter.get('/', async (req, res) => {
 });
 
 const PAGE_SIZE = 3;
+
 productRouter.get(
   '/search',
   expressAsyncHandler(async (req, res) => {
@@ -31,7 +32,6 @@ productRouter.get(
             },
           }
         : {};
-
     const categoryFilter = category && category !== 'all' ? { category } : {};
     const ratingFilter =
       rating && rating !== 'all'
@@ -96,6 +96,7 @@ productRouter.get(
     res.send(categories);
   })
 );
+
 
 productRouter.get('/slug/:slug', async (req, res) => {
   const product = await Product.findOne({ slug: req.params.slug });

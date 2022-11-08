@@ -11,7 +11,7 @@ import LoadingBox from '../components/LoadingBox';
 import MessageBox from '../components/MessageBox';
 import Button from 'react-bootstrap/Button';
 import Product from '../components/Product';
-import { LinkContainer } from 'react-router-bootstrap';
+import LinkContainer from 'react-router-bootstrap/LinkContainer';
 
 const reducer = (state, action) => {
   switch (action.type) {
@@ -74,7 +74,7 @@ export const ratings = [
 export default function SearchScreen() {
   const navigate = useNavigate();
   const { search } = useLocation();
-  const sp = new URLSearchParams(search);
+  const sp = new URLSearchParams(search); // /search?category=Shirts
   const category = sp.get('category') || 'all';
   const query = sp.get('query') || 'all';
   const price = sp.get('price') || 'all';
@@ -126,7 +126,7 @@ export default function SearchScreen() {
     const filterPrice = filter.price || price;
     const sortOrder = filter.order || order;
 
-    return `/search?category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${sortOrder}&page=${filterPage}`;
+    return `category=${filterCategory}&query=${filterQuery}&price=${filterPrice}&rating=${filterRating}&order=${sortOrder}&page=${filterPage}`;
   };
   return (
     <div>
@@ -141,7 +141,10 @@ export default function SearchScreen() {
               <li>
                 <Link
                   className={'all' === category ? 'text-bold' : ''}
-                  to={getFilterUrl({ category: 'all' })}
+                  to={{
+                    pathname: '/search',
+                    search: getFilterUrl({ category: 'all' }),
+                  }}
                 >
                   Any
                 </Link>
@@ -150,7 +153,10 @@ export default function SearchScreen() {
                 <li key={c}>
                   <Link
                     className={c === category ? 'text-bold' : ''}
-                    to={getFilterUrl({ category: c })}
+                    to={{
+                      pathname: '/search',
+                      search: getFilterUrl({ category: c }),
+                    }}
                   >
                     {c}
                   </Link>
@@ -164,7 +170,10 @@ export default function SearchScreen() {
               <li>
                 <Link
                   className={'all' === price ? 'text-bold' : ''}
-                  to={getFilterUrl({ price: 'all' })}
+                  to={{
+                    pathname: '/search',
+                    search: getFilterUrl({ price: 'all' }),
+                  }}
                 >
                   Any
                 </Link>
@@ -172,9 +181,14 @@ export default function SearchScreen() {
               {prices.map((p) => (
                 <li key={p.value}>
                   <Link
-                    to={getFilterUrl({ price: p.value })}
                     className={p.value === price ? 'text-bold' : ''}
-                  ></Link>
+                    to={{
+                      pathname: '/search',
+                      search: getFilterUrl({ price: p.value }),
+                    }}
+                  >
+                    {p.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -185,7 +199,10 @@ export default function SearchScreen() {
               {ratings.map((r) => (
                 <li key={r.name}>
                   <Link
-                    to={getFilterUrl({ rating: r.rating })}
+                    to={{
+                      pathname: '/search',
+                      search: getFilterUrl({ rating: r.rating }),
+                    }}
                     className={`${r.rating}` === `${rating}` ? 'text-bold' : ''}
                   >
                     <Rating caption={' & up'} rating={r.rating}></Rating>
@@ -194,7 +211,10 @@ export default function SearchScreen() {
               ))}
               <li>
                 <Link
-                  to={getFilterUrl({ rating: 'all' })}
+                  to={{
+                    pathname: 'search',
+                    search: getFilterUrl({ rating: 'all' }),
+                  }}
                   className={rating === 'all' ? 'text-bold' : ''}
                 >
                   <Rating caption={' & up'} rating={0}></Rating>
@@ -224,9 +244,9 @@ export default function SearchScreen() {
                     price !== 'all' ? (
                       <Button
                         variant="light"
-                        onClick={() => navigate('search')}
+                        onClick={() => navigate('/search')}
                       >
-                        <i className=" fas fa-times-circle"></i>
+                        <i className="fas fa-times-circle"></i>
                       </Button>
                     ) : null}
                   </div>
@@ -263,7 +283,10 @@ export default function SearchScreen() {
                   <LinkContainer
                     key={x + 1}
                     className="mx-1"
-                    to={getFilterUrl({ page: x + 1 })}
+                    to={{
+                      pathname: '/search',
+                      search: getFilterUrl({ page: x + 1 }),
+                    }}
                   >
                     <Button
                       className={Number(page) === x + 1 ? 'text-bold' : ''}

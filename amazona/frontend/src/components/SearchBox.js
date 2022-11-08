@@ -12,6 +12,7 @@ export default function SearchBox() {
     e.preventDefault();
     navigate(query ? `/search/?query=${query}` : '/search');
   };
+
   return (
     <Form className="d-flex me-auto" onSubmit={submitHandler}>
       <InputGroup>
