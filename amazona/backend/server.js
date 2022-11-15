@@ -9,7 +9,6 @@ import orderRouter from './routes/orderRoutes.js';
 import uploadRouter from './routes/uploadRoutes.js';
 dotenv.config();
 
-
 mongoose
   .connect(process.env.MONGODB_URI)
   .then(() => {
@@ -26,6 +25,9 @@ app.use(express.urlencoded({ extended: true }));
 
 app.get('/api/keys/paypal', (req, res) => {
   res.send(process.env.PAYPAL_CLIENT_ID || 'sb');
+});
+app.get('/api/keys/google', (req, res) => {
+  res.send({ key: process.env.GOOGLE_API_KEY || '' });
 });
 
 app.use('/api/upload', uploadRouter);
